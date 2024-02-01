@@ -2,7 +2,7 @@
 
 A new Flutter project.
 
-## intrucciones
+## intrucciones de dependencias
 
 ## Getting Started
 
