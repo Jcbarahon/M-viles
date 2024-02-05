@@ -1,42 +1,57 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:proyecto/views/single_book.dart';
 
 class ImageData {
   final String imageName;
   final String altText;
   final String author;
   final double price;
+  final String descripcion;
 
   ImageData({
     required this.imageName,
     required this.altText,
     required this.author,
     required this.price,
+    required this.descripcion,
   });
 }
 
 class ItemsWidget extends StatelessWidget {
   final List<ImageData> imagesData = [
     ImageData(
-        imageName: "imagen1",
-        altText: "Investigador Privado",
-        author: "Margalit Fox",
-        price: 4.56),
+      imageName: "imagen1",
+      altText: "Investigador Privado",
+      author: "Margalit Fox",
+      price: 4.56,
+      descripcion:
+          "En 1908, una anciana de posición acomodada muere brutalmente asesinada en su domicilio de Glasgow. La policía no tarda en encontrar a un sospechoso muy adecuado: Oscar Slater, un inmigrante alemán de origen judío y más que dudosa reputación.",
+    ),
     ImageData(
-        imageName: "imagen2",
-        altText: "Psicología Oscura",
-        author: "Fabián Goleman",
-        price: 3.90),
+      imageName: "imagen2",
+      altText: "Psicología Oscura",
+      author: "Fabián Goleman",
+      price: 3.90,
+      descripcion:
+          "En 1908, una anciana de posición acomodada muere brutalmente asesinada en su domicilio de Glasgow. La policía no tarda en encontrar a un sospechoso muy adecuado: Oscar Slater, un inmigrante alemán de origen judío y más que dudosa reputación.",
+    ),
     ImageData(
-        imageName: "imagen3",
-        altText: "Manipulación",
-        author: "R.J. Anderson",
-        price: 3.10),
+      imageName: "imagen3",
+      altText: "Manipulación",
+      author: "R.J. Anderson",
+      price: 3.10,
+      descripcion:
+          "En 1908, una anciana de posición acomodada muere brutalmente asesinada en su domicilio de Glasgow. La policía no tarda en encontrar a un sospechoso muy adecuado: Oscar Slater, un inmigrante alemán de origen judío y más que dudosa reputación.",
+    ),
     ImageData(
-        imageName: "imagen4",
-        altText: "Manejo de la ira",
-        author: "James W. Williams",
-        price: 2.85),
+      imageName: "imagen4",
+      altText: "Manejo de la ira",
+      author: "James W. Williams",
+      price: 2.85,
+      descripcion:
+          "En 1908, una anciana de posición acomodada muere brutalmente asesinada en su domicilio de Glasgow. La policía no tarda en encontrar a un sospechoso muy adecuado: Oscar Slater, un inmigrante alemán de origen judío y más que dudosa reputación.",
+    ),
   ];
 
   @override
@@ -66,7 +81,12 @@ class ItemsWidget extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    //Escribir lógica luego acerca de cada uno de los productos
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              SingleItemScreen(imagesData[i])),
+                    );
                   },
                   child: Container(
                     margin: const EdgeInsets.all(10),
