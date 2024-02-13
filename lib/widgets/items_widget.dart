@@ -8,6 +8,7 @@ class ImageData {
   final String author;
   final double price;
   final String descripcion;
+  bool isFavorite;
 
   ImageData({
     required this.imageName,
@@ -15,6 +16,7 @@ class ImageData {
     required this.author,
     required this.price,
     required this.descripcion,
+    required this.isFavorite,
   });
 }
 
@@ -25,6 +27,7 @@ class ItemsWidget extends StatelessWidget {
       altText: "Investigador Privado",
       author: "Margalit Fox",
       price: 4.56,
+      isFavorite: false,
       descripcion:
           "En 1908, una anciana de posición acomodada muere brutalmente asesinada en su domicilio de Glasgow. La policía no tarda en encontrar a un sospechoso muy adecuado: Oscar Slater, un inmigrante alemán de origen judío y más que dudosa reputación.",
     ),
@@ -33,6 +36,7 @@ class ItemsWidget extends StatelessWidget {
       altText: "Psicología Oscura",
       author: "Fabián Goleman",
       price: 3.90,
+      isFavorite: false,
       descripcion:
           "En 1908, una anciana de posición acomodada muere brutalmente asesinada en su domicilio de Glasgow. La policía no tarda en encontrar a un sospechoso muy adecuado: Oscar Slater, un inmigrante alemán de origen judío y más que dudosa reputación.",
     ),
@@ -41,6 +45,7 @@ class ItemsWidget extends StatelessWidget {
       altText: "Manipulación",
       author: "R.J. Anderson",
       price: 3.10,
+      isFavorite: false,
       descripcion:
           "En 1908, una anciana de posición acomodada muere brutalmente asesinada en su domicilio de Glasgow. La policía no tarda en encontrar a un sospechoso muy adecuado: Oscar Slater, un inmigrante alemán de origen judío y más que dudosa reputación.",
     ),
@@ -49,6 +54,7 @@ class ItemsWidget extends StatelessWidget {
       altText: "Manejo de la ira",
       author: "James W. Williams",
       price: 2.85,
+      isFavorite: false,
       descripcion:
           "En 1908, una anciana de posición acomodada muere brutalmente asesinada en su domicilio de Glasgow. La policía no tarda en encontrar a un sospechoso muy adecuado: Oscar Slater, un inmigrante alemán de origen judío y más que dudosa reputación.",
     ),

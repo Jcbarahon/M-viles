@@ -29,7 +29,7 @@ class _SingleItemScreenState extends State<SingleItemScreen> {
                     children: [
                       InkWell(
                         onTap: () {
-                          Navigator.pop(context);
+                          Navigator.pop(context, widget.data);
                         },
                         child: Row(
                           children: [
@@ -212,15 +212,27 @@ class _SingleItemScreenState extends State<SingleItemScreen> {
                               ),
                             ),
                           ),
-                          Container(
-                            padding: const EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFE57734),
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            child: const Icon(
-                              Icons.favorite_outline,
-                              color: Colors.black,
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                widget.data.isFavorite =
+                                    !widget.data.isFavorite;
+                              });
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                color: widget.data.isFavorite
+                                    ? Colors.red
+                                    : const Color(0xFFE57734),
+                                borderRadius: BorderRadius.circular(18),
+                              ),
+                              child: Icon(
+                                widget.data.isFavorite
+                                    ? Icons.favorite
+                                    : Icons.favorite_outline,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ],
