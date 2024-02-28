@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto/views/sells_page.dart';
 import 'package:proyecto/widgets/items_widget.dart';
 
 class SingleItemScreen extends StatefulWidget {
@@ -193,22 +194,33 @@ class _SingleItemScreenState extends State<SingleItemScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 20,
-                              horizontal: 50,
-                            ),
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(248, 227, 154, 95),
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            child: const Text(
-                              "Comprar ",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 1,
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      SellPage(), // Aquí se pasa la nueva ventana que quieres abrir
+                                ),
+                              );
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 20,
+                                horizontal: 50,
+                              ),
+                              decoration: BoxDecoration(
+                                color: const Color.fromARGB(248, 227, 154, 95),
+                                borderRadius: BorderRadius.circular(18),
+                              ),
+                              child: const Text(
+                                "Comprar ",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1,
+                                ),
                               ),
                             ),
                           ),

@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterUser extends StatefulWidget {
   const RegisterUser({Key? key}) : super(key: key);
@@ -11,10 +15,12 @@ class _RegisterUserState extends State<RegisterUser> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  File? _image;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFe9ddd1),
       appBar: AppBar(
         title: const Text('Registro de Usuario'),
         backgroundColor: Colors.black87,
@@ -59,22 +65,17 @@ class _RegisterUserState extends State<RegisterUser> {
               ),
             ),
             const SizedBox(height: 20.0),
-            GestureDetector(
-              onTap: _pickImage,
-              child: Container(
-                height: 100,
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                child: const Center(
-                  child: Icon(
-                    Icons.camera_alt,
-                    size: 50,
-                    color: Colors.grey,
-                  ),
-                ),
+            _image != null
+                ? Image.file(_image!)
+                : const SizedBox(), // Mostrar imagen seleccionada si existe
+            const SizedBox(height: 20.0),
+            ElevatedButton(
+              onPressed: _getImage,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFC67C4E),
+                textStyle: const TextStyle(color: Colors.white),
               ),
+              child: const Text('Seleccionar Imagen'),
             ),
             const SizedBox(height: 20.0),
             ElevatedButton(
@@ -91,18 +92,38 @@ class _RegisterUserState extends State<RegisterUser> {
     );
   }
 
-  void _pickImage() {
-    // logica de la imagen(luego lo hare)
-  }
-
-  void _submit() {
-    final name = _nameController.text;
+  void _submit() async {
     final email = _emailController.text;
     final password = _passwordController.text;
 
-    //datos en la consola
-    print('Nombre: $name');
-    print('Correo electrónico: $email');
-    print('Contraseña: $password');
+    try {
+      await FirebaseFirestore.instance.collection('clientes').add({
+        'name': _nameController.text,
+        'email': email,
+        'password': password,
+        'imageUrl': _image != null ? _image!.path : null,
+      });
+
+      print('Usuario registrado en Firestore');
+      _nameController.clear();
+      _emailController.clear();
+      _passwordController.clear();
+      setState(() {
+        _image = null;
+      });
+    } catch (e) {
+      print('Error al registrar usuario en Firestore: $e');
+    }
+  }
+
+  Future<void> _getImage() async {
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedImage != null) {
+      setState(() {
+        _image = File(pickedImage.path);
+      });
+    }
   }
 }

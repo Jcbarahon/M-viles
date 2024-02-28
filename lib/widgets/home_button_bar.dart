@@ -20,7 +20,6 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
     _pages = [
       const BooksPage(),
       FavoritesPage(),
-      Container(), // Página de notificaciones (aún por definir)
       const HomePage(),
     ];
   }
@@ -62,8 +61,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
         children: [
           _buildIcon(Icons.home, 0, context),
           _buildIcon(Icons.favorite_outlined, 1, context),
-          _buildIcon(Icons.notifications, 2, context),
-          _buildIcon(Icons.exit_to_app, 3, context),
+          _buildIcon(Icons.exit_to_app, 2, context),
         ],
       ),
     );
@@ -76,7 +74,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
       },
       child: Icon(
         icon,
-        color: _selectedIndex == index ? Color(0xFFC67C4E) : Colors.black,
+        color: _selectedIndex == index ? const Color(0xFFC67C4E) : Colors.black,
         size: 35,
       ),
     );
